@@ -26,7 +26,7 @@ class MoE(nn.Module):
         gating_dropout: a float - dropout rate for gating network
         sample_topk: an integer - how many experts to sample during training
         gating_size: an integer - size of the gating network
-        aux_loss: a string - type of auxiliary loss ('mi' or 'sparse')
+        aux_loss: a string - type of auxiliary loss ('mi' or 'switch')
         gate_type: a string - type of gating mechanism ('mlp' or 'topk')
     """
 
