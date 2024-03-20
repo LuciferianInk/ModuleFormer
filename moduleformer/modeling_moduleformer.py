@@ -207,9 +207,9 @@ class ModuleFormerBlock(nn.Module):
             config: Configuration object with model hyperparameters.
         """
         super().__init__()
-        self.ln_1 = nn.LayerNorm(config.n_embd)
+        self.ln_1 = nn.LayerNorm(config.n_embd, eps=config.layer_norm_epsilon)
         self.attn = ModuleFormerAttention(config)
-        self.ln_2 = nn.LayerNorm(config.n_embd)
+        self.ln_2 = nn.LayerNorm(config.n_embd, eps=config.layer_norm_epsilon)
         self.mlpf = MoE(
                 input_size=config.n_embd, 
                 head_size=config.ffd_hidden, 
@@ -425,7 +425,7 @@ class ModuleFormerModel(ModuleFormerPreTrainedModel):
         self.wte = nn.Embedding(config.vocab_size, config.n_embd)
         self.drop = nn.Dropout(config.embd_pdrop)
         self.h = nn.ModuleList([ModuleFormerBlock(config) for _ in range(config.n_layer)])
-        self.ln_f = nn.LayerNorm(config.n_embd)
+        self.ln_f = nn.LayerNorm(config.n_embd, eps=config.layer_norm_epsilon)
 
         # Initialize weights and apply final processing
         self.post_init()

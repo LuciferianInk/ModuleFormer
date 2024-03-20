@@ -125,7 +125,7 @@ class ModuleFormerConfig(PretrainedConfig):
         self.embd_pdrop = embd_pdrop
         self.attn_pdrop = attn_pdrop
         self.moe_pdrop = moe_pdrop
-        self.layer_norm_epsilon = layer_norm_epsilon
+        self.layer_norm_epsilon = float(layer_norm_epsilon)
         self.initializer_range = initializer_range
         self.use_cache = use_cache
         self.sample_topk = sample_topk
