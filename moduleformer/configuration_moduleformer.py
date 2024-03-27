@@ -39,8 +39,6 @@ class ModuleFormerConfig(PretrainedConfig):
             Number of hidden layers in the Transformer encoder.
         n_head (`int`, *optional*, defaults to 16):
             Number of attention heads for each attention layer in the Transformer encoder.
-        rotary_dim (`int`, *optional*, defaults to 64):
-            Number of dimensions in the embedding that Rotary Position Embedding is applied to.
         n_inner (`int`, *optional*, defaults to None):
             Dimensionality of the inner feed-forward layers. `None` will set it to 4 times n_embd
         activation_function (`str`, *optional*, defaults to `"gelu_new"`):
@@ -109,6 +107,7 @@ class ModuleFormerConfig(PretrainedConfig):
         tie_word_embeddings=False,
         aux_loss_type = 'mi',
         aux_loss_weight=0,
+        acc_aux_loss=False,
         gate_type = "mlp",
         **kwargs,
     ):
@@ -136,6 +135,7 @@ class ModuleFormerConfig(PretrainedConfig):
         self.k_mlp = k_mlp
         self.aux_loss_type = aux_loss_type
         self.aux_loss_weight = aux_loss_weight
+        self.acc_aux_loss = acc_aux_loss
         self.gate_type = gate_type
         self.n_ctx = history_length * n_layer
 
